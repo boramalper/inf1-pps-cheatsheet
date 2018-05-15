@@ -1,0 +1,990 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{tipa}  % for IPA
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{titlesec}  % for newpage at each section
+
+\title{Proofs and Problem Solving - Cheatsheet \\
+\large Based on the Fourth Edition of \textit{A Concise Introduction to Pure Mathematics} by Marti Liebeck}
+\author{Bora M. Alper\\bora@boramaper.org}
+\date{May 2018}
+
+\newcommand{\prop}[1]{
+    \item \textbf{Proposition \thesection.#1}\\
+}
+
+\newcommand{\defi}[1]{
+    \item \textbf{Definition \thesection.#1}\\
+}
+
+\newcommand{\theo}[1]{
+    \item \textbf{Theorem \thesection.#1}\\
+}
+
+\newcommand{\rul}[1]{
+    \item \textbf{Rule \thesection.#1}\\
+}
+
+\newcommand{\exam}[1]{
+    \item \textbf{Example \thesection.#1}\\
+}
+
+\newcommand{\nota}[1]{
+    \item \textbf{Notation \thesection.#1}\\
+}
+
+% Redefine \emph to be bold
+%% https://tex.stackexchange.com/a/227644/77323
+\let\emph\relax % there's no \RedeclareTextFontCommand
+\DeclareTextFontCommand{\emph}{\bfseries}
+
+% New page at each section
+%% https://tex.stackexchange.com/a/9505/77323
+%% Note:
+%%   If you have a \subsection without content, the \section after it won't be
+%%   pushed to a new page.
+\newcommand{\sectionbreak}{\clearpage}
+
+\begin{document}
+
+\maketitle
+\begin{description}
+    \item[\textit{caveat emptor} (/\textipa{[\textsecstress kæv\textepsilon\textscripta\textlengthmark t \textprimstress\textepsilon mpt\textopeno\textlengthmark r]}/)] "Let the buyer beware." A principle in commerce: without a warranty the buyer takes the risk.
+\end{description}
+
+\tableofcontents
+
+%% Section Structure
+%%  0. Notation (2nd pass)
+%%  1. Definitions (2nd pass)
+%%  2. Rules  (3rd pass)
+%%  3. Theorems  (2nd pass)
+%%  4. Propositions  (1st pass)
+%%  5. Examples  (4th pass)
+%%
+%% Omit empty subsections.
+
+\section{Sets and Proofs}
+Nothing interesting.
+
+\section{Number Systems}
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Between any two rationals there is another rational.
+    
+    \prop 2
+    There is a real number $\alpha$ such that $\alpha^2 = 2$.
+    
+    \prop 3
+    $\sqrt{2}$ is not rational.
+    
+    \prop 4
+    Let $a$ be a rational number, and $b$ an irrational.
+    \begin{enumerate}
+        \item Then $a + b$ is irrational.
+        \item If $a \not= 0$ then $ab$ is also irrational.
+    \end{enumerate}
+    
+    \prop 5
+    Between any two real numbers there is an irrational.
+\end{itemize}
+
+\section{Decimals}
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $x$ be a real number.
+    \begin{enumerate}
+        \item If $x \not= 1$, then 
+            $$ x + x^2 + x^3 + \ldots + x^n = \frac{x(1-x^n)}{1-x} $$
+        \item If $-1 < x < 1$, then the sum to infinity is
+            $$ x + x^2 + x^3 + \ldots = \frac{x}{1-x}$$
+    \end{enumerate}
+    
+    \prop 2
+    Every real number $x$ has a decimal expression
+        $$ x = a_0.a_1a_2a_3\ldots $$
+        
+    \prop 3
+    Suppose that $a_0.a_1a_2a_3\ldots$ and $b_0.b_1b_2b_3\ldots$ are two different decimal
+    expressions for the same real number. Then one of these expressions ends in $9999\ldots$
+    and the other ends in $0000\ldots$
+    
+    \prop 4
+    The decimal expression for any rational number is periodic.
+    
+    \prop 5
+    Every periodic decimal is rational.
+\end{itemize}
+
+\subsection{Hints}
+\begin{itemize}
+    \item Periodicity is almost always when divided by 99.
+\end{itemize}
+
+
+\section{$n^\text{th}$ Roots and Rational Powers}
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $n$ be a positive integer. If $x$ is a positive real number, then there is exactly one positive real number $y$ such that $y^n = x$.
+    \begin{itemize}
+        \item Positive integer powers of every positive integer is (a) unique (positive integer).
+    \end{itemize}
+    
+    \prop 2
+    Let $x$, $y$ be positive real numbers and $p, q \in \mathbb{Q}$. Then
+    %% TODO: Align equals?
+    \begin{enumerate}
+        \item $x^px^q = x^{p+q}$
+        \item $(x^p)^q = x^{pq}$
+        \item $(xy)^p = x^py^p$
+    \end{enumerate}
+\end{itemize}
+
+\section{Inequalities}
+\subsection{Rules}
+\begin{itemize}
+    \item \textbf{Rule \thesection.1}  %% \rul 1
+    \begin{enumerate}
+        \item If $x \in \mathbb{R}$, then either $x>0$ or $x<0$ or $x=0$ (and just one of these is true).
+        \item If $x>y$ then $-x<-y$.
+        \item If $x>y$ and $c \in \mathbb{R}$, then $x + c > y + c$.
+        \item If $x > 0$ and $y > 0$, then $xy > 0$.
+        \item If $x>y$ and $y>z$ then $x>z$.
+    \end{enumerate}
+\end{itemize}
+
+\section{Complex Numbers}
+\subsection{Notations}
+\begin{itemize}
+    \item \textbf{Notation \thesection.1 (The $e^{i\theta}$ Notation)} %% \nota {1 (The $e^{i\theta}$ Notation)}
+        $$ re^{i\theta} = r(\cos\theta + i\sin\theta) $$
+\end{itemize}
+
+\subsection{Definitions}
+\begin{itemize}
+    \defi {X (Roots of Unity)}
+    Let $n$ be a positive integer, then the complex numbers that satisfy the equation
+        $$ z^n = 1 $$
+    are called the $n^\text{th}$ roots of unity.
+\end{itemize}
+
+\subsection{Theorems}
+\begin{itemize}
+    \theo {1 (De Moivre's Theorem)}
+    Let $z_1$, $z_2$ be complex numbers with polar forms
+        $$ z_1 = r_1(\cos\theta_1 + i\sin\theta_1), \quad z_2 = r_2(\cos\theta_2 + i\ \sin\theta_2) $$
+    Then the product
+        $$ z_1z_2 = r_1r_2 (\cos(\theta_1 + \theta_2) + i\ \sin(\theta_1 + \theta_2)) $$
+    In other words, $z_1z_2$ has modulus $r_1r_2$ and argument $\theta_1 + \theta_2$.
+    
+    De Moivre's Theorem says that multiplying a complex number $z$ by $\text{cos}\theta + i\text{sin}\theta$ rotates $z$ counter-clockwise through the angle $\theta$.
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $z=r(\cos\theta + i\sin\theta)$, and let $n$ be a positive integer. Then
+    \begin{enumerate}
+        \item $z^n = r^n(\cos n\theta + i\sin n\theta)$, and
+        \item $z^{-n} = r^{-n}(\cos n\theta-i\sin n\theta)$.
+    \end{enumerate}
+    
+    \item \textbf{Proposition \thesection.2}  %% \prop 2
+    \begin{enumerate}
+        \item If $z = re^{i\theta}$ then $\overline z = re^{-i\theta}$.
+        \item Let $z = re^{i\theta}$, $w = se^{i\phi}$ in polar form. Then
+        $z = w$ if and only if both
+        $r = s$ and $\theta - \phi = 2k\pi$ with $k \in \mathbb{Z}$.
+    \end{enumerate}
+    
+    \prop 3
+    Let $n$ be a positive integer and define $w = e^\frac{2\pi i}{n}$. Then the $n^\text{th}$ roots of
+    unity are $n$ complex numbers
+        $$ 1, w, w^2, \ldots, w^{n-1} $$
+\end{itemize}
+
+\section{Polynomial Equations}
+\subsection{Theorems}
+\begin{itemize}
+    \theo {1 (Fundamental Theorem of Algebra)}
+    Every polynomial equation of degree at least $1$ has a root in $\mathbb{C}$.
+    
+    \theo 2
+    Every polynomial of degree $n$ factorises as a product of linear polynomials and has
+    exactly $n$ roots in $\mathbb{C}$ (counting repeats).
+    
+    \theo 3
+    Every real polynomial factorises as a product of real linear and real quadratic
+    polynomials (which contains the complex conjugate pair roots).
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let the roots of the equation
+        $$ x^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0 = 0 $$
+    be $\alpha_1, \alpha_2, \ldots, \alpha_n$. If $s_1$ denotes the sum of the
+    roots, $s_2$ denotes the sum of all products of \emph{pairs} of roots, $s_3$ denotes the sum of all products of \emph{triples} of roots, and so on, then
+        \begin{align*}
+            s_1 = \alpha_1 + \ldots + \alpha_n &= -a_{n-1},\\
+            s_2 &= +a_{n-2},\\
+            s_3 &= -a_{n-3},\\
+            &\shortvdotswithin{=}
+            s_n = \alpha_1\alpha_2\ldots\alpha_n &= (-1)^na_0
+        \end{align*}
+\end{itemize}
+
+\section{Induction}
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Every positive integer greater than 1 is equal to a product of prime numbers.
+    
+    \prop 2
+    Let $n$ be a positive integer. Then for any real numbers $a_1,\ldots,a_n$
+    and $b_1,\ldots,b_n$,
+        $$ a_1b_1 + \ldots + a_nb_n \le \sqrt{a_1^2 + \ldots + a_n^2} \sqrt{b_1^2 + \ldots + b_n^2} $$
+\end{itemize}
+
+\section{Euler's Formula and Platonic Solids}
+\subsection{Definition}
+\begin{itemize}
+    \defi X
+    A \emph{polyhedron} is a solid whose surface consists of a number of faces,
+    all of which are polygons, such that any side of a face lies on exactly one
+    other face. The corners of the faces are called the \emph{vertices} of the
+    polyhedron, and their sides are the \emph{edges}.
+    
+    \defi 1
+    A \emph{plane graph} is a figure in the plane consisting of a collection of
+    points (vertices), and some edges joining various pairs of these points, with \emph{no two edges crossing each other}. A plane graph is
+    \emph{connected} if we can get from any vertex of the graph to any other
+    vertex by going along a path of edges in the graph.
+    
+    \defi X
+    A polygon is said to be \emph{regular} if all its sides are of equal length and
+    all its internal angles are equal too.
+    
+    \defi X
+    A polyhedron is \emph{regular} if its faces are regular polygons, all with
+    the same number of sides, and also each vertex belongs to the same number
+    of edges.
+    
+    \textbf{Platonic (Regular) Solids}\\
+            \begin{tabular}{ r | r r r r r }
+                & V & E & F & n & r\\
+                \hline
+                tetrahedron  &  4 &  6 &  4 & 3 & 3 \\
+                cube         &  8 & 12 &  6 & 4 & 3 \\
+                octahedron   &  6 & 12 &  8 & 3 & 4 \\
+                icosahedron  & 12 & 30 & 20 & 3 & 5 \\
+                dodecahedron & 20 & 30 & 12 & 5 & 3
+            \end{tabular}
+            \begin{description}
+            \item [$V$] Vertices
+            \item [$E$] Edges
+            \item [$F$] Faces
+            \item [$n$] Number of sides on a face
+            \item [$r$] Number of edges each vertex belongs to
+            \end{description}
+\end{itemize}
+
+\subsection{Theorems}
+\begin{itemize}
+    \theo 1
+    For a corner polyhedron with $V$ vertices, $E$ edges and $F$ faces, we have
+        $$ V - E + F = 2 $$
+    
+    \theo 2
+    If a connected plane graph has $v$ vertices, $e$ edges and $f$ faces, then
+        $$ v - e + f = 1 $$
+        
+    \theo 3
+    The only regular convex polyhedra are the five Platonic solids.
+\end{itemize}
+
+\section{The Integers}
+
+\subsection{Definitions}
+\begin{itemize}
+    \defi 1
+    Let $a,b \in \mathbb{Z}$. We say $a$ \emph{divides} $b$ (or $a$ is a factor of $b$) if $b=ac$ for some integer $c$. When $a$ divides $b$, we write $a|b$.
+    
+    \defi 2
+    Let $a,b \in \mathbb{Z}$. A common factor of $a$ and $b$ is an integer that
+    divides both $a$ and $b$. The \emph{highest common factor} (\textit{i.e.}
+    \emph{greatest common divisor}) of $a$ and $b$, written $\text{hcf}(a, b)$
+    or $\text{gcd}(a, b)$, is the largest positive integer that divides both
+    $a$ and $b$.
+    \begin{itemize}
+        \item See page 88 for Euclid's Algorithm.
+    \end{itemize}
+    
+    \defi 3
+    If $a, b \in \mathbb{Z}$ and $\text{hcf}(a, b) = 1$, we say that $a$ and $b$ are \emph{coprime to each other}.
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $a$ be a a positive integer. Then for any $b \in \mathbb{Z}$, there are
+    integers $q$, $r$ such that
+        $$ b = qa + r\quad\text{and}\quad0 \le r < a $$
+    The integer $q$ is called the quotient, and $r$ is the remainder.
+    
+    \prop 2
+    Let $a, b, d \in \mathbb{Z}$, and supposed that $d|a$ and $d|b$. Then
+    $d|(ma + nb)$ for any $m, n \in \mathbb{Z}$.
+    
+    \prop 3
+    If $a, b \in \mathbb{Z}$ and $d = \text{hcf}(a, b)$, then there are
+    integers $s$ and $t$ such that
+        $$ d = sa + tb $$
+        
+    \prop 4
+    If $a, b \in \mathbb{Z}$, then any common factor of $a$ and $b$ also
+    divides $\text{hcf}(a, b)$.
+    
+    \prop 5
+    Let $a, b \in \mathbb{Z}$
+    \begin{enumerate}
+        \item Suppose $c$ is a integer such that $a$ and $c$ are coprime to
+        each other, and $c|ab$. Then $c|b$.
+        \item Suppose $p$ is a prime number and $p|ab$. Then either $p|a$ or $p|b$ or both.
+    \end{enumerate}
+    
+    \prop 6
+    Let $a_1, a_2, \ldots, a_n \in \mathbb{Z}$, and let $p$ be a prime number.
+    If $p|a_1a_2\ldots a_n$, then $p|a_i$ for some i.
+\end{itemize}
+
+\section{Prime Factorization}
+\subsection{Theorems}
+\begin{itemize}
+\item \textbf{Theorem \thesection.1 (Fundamental Theorem of Arithmetic)}\\  % \theo 1
+Let $n$ be an integer with $n \ge 2$.
+\begin{enumerate}
+    \item Then $n$ is equal to a product of prime numbers: we have
+        $$ n = p_1 \ldots p_k $$
+    where $p_1, \ldots, p_k$ are primes and $p_1 \le p_2 \le \ldots \le p_k$.
+    
+    \item This prime factorisation of $n$ is unique: in other words, if
+        $$ n = p_1 \ldots p_k = q_1 \ldots q_l $$
+    where $p_i$s and $q_i$s are all prime, $p_1 \le p_2 \le \ldots \le p_k$ and $q_1 \le q_2 \le \ldots \le q_l$, then
+        $$ k=l \quad \text{and} \quad p_i = q_i, \ \forall i = i,\ldots,k$$
+\end{enumerate}
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $n = p_1^{a_1}p_2^{a_2} \ldots p_m^{a_m}$, where $p_i$s are prime,
+    $p_1 < p_2 < \ldots < p_m$ and $a_i$s are positive integers. If $m|n$,
+    then
+        $$ m = p_1^{b_1}p_2^{b_2} \ldots p_m^{b_m} \quad \text{with} \quad 0 \le b_i \le a_i, \  \forall i \in [i, m] $$
+    For example, the only divisors of $2^100 3^2$ are the numbers $2^a 3^b$,
+    where $0 \le a \le 100$, $0 \le b \le 2$.
+    
+    \prop 2
+     Let $a, b \ge 2$ be integers with prime factorisations
+        $$ a = p_1^{r_1}p_2^{r_2} \ldots p_m^{r_m},\  b = p_1^{s_1}p_2^{s_2} \ldots p_m^{s_m} $$
+    where the $p_i$ are distinct primes and all $r_i, s_i \ge 0$ (we allow some
+    of the $r_i$ and $s_i$ to be $0$). Then
+    \begin{enumerate}
+        \item $\text{hcf}(a, b) = p_1^{\text{min}(r_1, s_1)} \ldots p_m^{\text{min}(r_m, s_m)}$
+        \item $\text{lcm}(a, b) = p_1^{\text{max}(r_1, s_1)} \ldots p_m^{\text{max}(r_m, s_m)}$
+        \item $\text{lcm}(a, b) = ab/\text{hcf}(a, b)$
+    \end{enumerate}
+        
+    \prop 3
+    Let $n$ be a positive integer. Then $\sqrt{n}$ is rational if and only if $n$
+    is a perfect square (\textit{i.e.} $n = m^2$ for some integer $m$).
+    
+    \prop 4
+    Let $a$ and $b$ be positive integers that are coprime to each other.
+    \begin{enumerate}
+        \item If $ab$ is a square, then both $a$ and $b$ are also squares.
+        \item More generally, if $ab$ is an $n^\text{th}$ power (for some
+            positive integer $n$), then both ($a$ and $b$ are also
+            $n^\text{th}$ powers.
+    \end{enumerate}
+\end{itemize}
+
+\section{More on Prime Numbers}
+\subsection{Theorems}
+\begin{itemize}
+    \theo 1
+    There are infinitely many prime numbers.
+    
+    \theo 2
+    For a positive integer $n$, let $\pi(n)$ be the number of primes up to $n$.
+    Then the ratio of $\pi(n)$ and $\frac{n}{log_e n}$ tends to $1$ as $n$
+    tends to infinity.
+\end{itemize}
+
+\section{Congruence of Integers}
+\subsection{Definitions}
+\begin{itemize}
+    \defi 1
+    Let $m$ be a positive integer. For $a,b \in \mathbb{Z}$, if $m$ divides
+    $b - a$ we write $a \equiv b \mod m$ and say $a$ is \emph{congruent}
+    to $b$ modulo $m$.
+    
+    \defi {X (The System $\mathbb{Z}_m$)}
+    $\mathbb{Z}_m$ denotes "the non-negative integers modulo $m$". For example
+        \begin{align*}
+            \mathbb{Z}_4 &= 0, 1, 2, 3\\
+            \mathbb{Z}_8 &= 0, 1, 2, 3, 4, 5, 6, 7\\
+            &\vdotswithin{=}
+        \end{align*}
+    
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Every integer is congruent to exactly one of the numbers $0, 1, 2, \ldots, m - 1$ modulo $m$.
+    
+    \prop 2
+    Let $m$ be a positive integer. The following are true, $\forall a, b, c \in \mathbb{Z}$:
+    \begin{enumerate}
+        \item $a \equiv a \mod m$,
+        \item if $a \equiv b \mod m$ then $b \equiv a \mod m$,
+        \item if $a \equiv b \mod m$ \emph{and} $b \equiv c \mod m$, then
+            $a \equiv c \mod m$.
+    \end{enumerate}
+    
+    \prop 3
+    Suppose $a \equiv b \mod m$ and $c \equiv d \mod m$. Then
+        $$ a + c \equiv b + d \mod m \qquad \text{and} \qquad ac \equiv bd \mod m $$
+
+    \prop 4
+    If $a \equiv b \mod m$, and $n$ is a positive integer, then
+        $$ a^n \equiv b^n \mod m $$
+        
+    \prop {5.1}  %% \item \textbf{Proposition \thesection.5}  %% 
+    Let $a$ and $m$ be coprime integers. If $x, y \in \mathbb{Z}$ are such that
+    $xa \equiv ya \mod m$, then $x \equiv y \mod m$.
+            
+    \prop {5.2}
+    Let $p$ be a prime, and let $a$ be an integer that is not divisible by $p$. If $x, y \in \mathbb{Z}$ are such that $xa \equiv ya \mod p$, then
+    $x \equiv y \mod p$.
+    
+    \prop 6
+    The congruence equation
+        $$ ax \equiv b \mod m $$
+    has a solution $x \in \mathbb{Z}$ \emph{if and only if} $\text{hcf}(a, m)$
+    divides $b$.
+\end{itemize}
+    
+\section{More on Congruence}
+\subsection{Theorems}
+\begin{itemize}
+    \theo {1 (Fermat's Little Theorem)}
+    Let $p$ be a prime number, and let $a$ be an integer that is not divisible by $p$.
+    Then
+        $$ a^{p-1} \equiv 1 \mod p $$
+    \begin{itemize}
+        \item For example for $p = 17$
+            \begin{align*}
+                       2^{16} &\equiv 1 \mod 17\\
+                      93^{16} &\equiv 1 \mod 17\\
+                72307892^{16} &\equiv 1 \mod 17
+            \end{align*}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $p$ and $q$ be distinct prime numbers, and let $a$ be an integer that is not
+    divisible by $p$ or $q$. Then
+        $$ a^{(p-1)(q-1)} \equiv 1 \mod pq $$
+        
+    \prop 2
+    Let $p$ be a prime, and let $k$ be a positive integer coprime to $p - 1$. Then
+    \begin{enumerate}
+        \item $\exists s \in \mathbb{Z}^+$ such that $sk \equiv 1 \mod (p - 1)$, and
+        \item for $\forall b \in \mathbb{Z}$ not divisible by $p$, the congruence
+            equation
+            $$ x^k \equiv b \mod p $$
+            has a unique solution for $x$ modulo $p$. This solution is $x \equiv b^s \mod p$, where $s$ is as in (1.).
+    \end{enumerate}
+    
+    \prop 3
+    Let $p$, $q$ be distinct primes, and let $k$ be a positive integer coprime to
+    $(p-1)(q-1)$. Then
+    \begin{itemize}
+        \item $\exists s \in \mathbb{Z}^+$ such that $sk \equiv 1 \mod (p-1)(q-1)$, and
+        \item $\forall b \in \mathbb{Z}$ not divisible by $p$ or $q$, the congruence
+            equation
+            $$ x^k \equiv b \mod pq $$
+            has a unique solution for $x$ modulo $pq$. This solution is $x \equiv b^s \mod pq$, where $s$ is as in (1.).
+    \end{itemize}
+    
+    \prop 4
+    Let $p$ be a prime. If $a$ is an integer such that $a^2 \equiv 1 \mod p$, then
+    $a \equiv \pm1 \mod p$.
+\end{itemize}
+
+\section{Secret Codes}
+Nothing (but \textit{very} interesting)!
+
+\section{Counting and Choosing}
+\subsection{Definitions}
+\begin{itemize}
+    \defi {1 (Binomial Coefficients)}
+    Let $n$ be a positive integer and $r$ an integer such that $0 \le r \le n$.
+    Define
+        $$ \binom{n}{r} $$
+    (called "$n$ choose $r$") to be the number of $r$-element subsets of
+    %% TODO: warning here
+    $\{1,2,\ldots,n\}$.
+    
+    \defi{2 (Ordered Partitions [Multinomial Coefficients])}
+    Let $n$ be a positive integer, and let $S = \{1, 2, \ldots, n\}$. A
+    \emph{partition} of $S$ is a collection of subsets $S_1, \ldots, S_k$ such
+    that each element of $S$ lies in exactly one of these subsets. The
+    partition is \emph{ordered} if we take account of the order in which the
+    subsets are written.
+    
+    The point about the order is that, for instance, the ordered partition
+        $$ \{1, 2, 3, 4\} \quad \{5, 6\} \quad \{7, 8\} $$
+    is different from the ordered partition
+        $$ \{1, 2, 3, 4\} \quad \{7, 8\} \quad \{5, 6\} $$
+    even though the subsets involved are the same in both cases.
+    
+    If $r_1,r_2, \ldots, r_k $ are non-negative integers such that
+    $n = r_1 + r_2 + \ldots + r_k$, we denote the total number of ordered
+    partitions of $S = \{1, 2, \ldots, n\}$ into subsets
+    $S_1, S_2, \ldots, S_k$ of sizes $r_1, r_2, \ldots, r_k$ by the symbol
+        $$ \binom{n}{r_1, r_2, \ldots, r_k} $$
+\end{itemize}
+
+\subsection{Theorems}
+\begin{itemize}
+    \theo {1 (Multiplication Principle)}
+    Let $P$ be a process which consists of $n$ stages, and suppose that for
+    each $r$, the $r^\text{th}$ stage can be carried out in $a_r$ ways. Then
+    $P$ can be carried out in $a_1a_2 \ldots a_n$ ways.
+    
+    \theo {2 (Binomial Theorem)}
+    Let $n$ be a positive integer, and let $a$, $b$ be real numbers. Then
+    \begin{align*}
+        (a + b)^n &= \sum^n_{r=0} \binom{n}{r} a^{n-r}b^r\\
+                  &= a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2 + \ldots + \binom{n}{n-1}ab^{n-1} + b^n
+    \end{align*}
+    
+    \theo {3 (Multinomial Theorem)}
+    Let $n$ be a positive integer, and let $x_1, \ldots, x_k$ be a real
+    numbers. Then the expansion of $(x_1 + x_2 + \ldots + x_k)^n$ is the sum of
+    all terms of the form
+        $$ \binom{n}{r_1, r_2, \ldots, r_k} x_1^{r_1}x_2^{r_2} \ldots x_k^{r_k} $$
+    where $r_1, r_2, \ldots, r_k$ are non-negative integers such that
+    $r_1 + r_2 + \ldots + r_k = n$
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $S$ be a set consisting of $n$ elements. Then the number of different
+    arrangements of the elements of $S$ \emph{in order} is $n!$
+    
+    Recall that $n! = n \cdot (n-1) \cdot (n-2) \ldots 2 \cdot 1$
+    
+    \prop 2
+        $$ \binom{n}{r} = \frac{n!}{r!(n-r)!} $$
+        
+    \prop 3
+    For any positive integer $n$,
+        $$ (x + 1)^n = \sum^n_{r=0} \binom{n}{r} x^r $$
+    Putting $x = \pm1$ in this, we get the interesting equalities
+        $$ \sum^n_{r=0} \binom{n}{r} = 2^n, \qquad \sum^n_{r=0} (-1)^n \binom{n}{r} = 0 $$
+    The second of these equalities gives the following:
+        $$ \sum^n_{r=1} (-1)^{r-1} \binom{n}{r} = \binom{n}{0} = 1 $$
+    
+    \prop 4
+    Let $S$ be a set of $n$ elements.
+    \begin{enumerate}
+        \item The number of ordered selections of $r$ elements of $S$, allowing
+            \emph{repetitions}, is equal to $n^r$.
+        \item The number of ordered selections of $r$ \emph{distinct} elements
+            of $S$ is equal to $n (n - 1) \ldots (n - r + 1)$
+    \end{enumerate}
+    
+    \prop 5
+        $$ \binom{n}{r_1, r_2, \ldots, r_k} = \frac{n!}{r_1!r_2! \ldots r_k!} $$
+\end{itemize}
+
+\subsection{Examples}
+\begin{itemize}
+    \exam 9 %% \item \textbf{Example \thesection.9} %% \exam 9
+    Find the coefficient of $x^3$ in the expansion of $(1 - \frac{1}{x^3} + 2x^2)^5$.
+    
+    A \emph{typical} term in this expansion is
+        $$ \binom{5}{a, b, c}\ \cdot\ 1^a \cdot \left(\frac{-1}{x^3}\right)^b \cdot \left(2x^2\right)^c $$
+    where $a + b + c = 5$ (and $a, b, c \ge 0$). To make this a term in $x^3$,
+    we need
+        $$ -3b + 2c = 3 \qquad \text{and} \qquad a + b + c = 5 $$
+    From the first equation, $3$ divides $c$, so $c = 0$ or $3$. If $c = 0$
+    then $b = -1$, which is impossible. Hence $c = 3$, and it follows that
+    $a = 1$, $b = 1$. Thus there is just one term in $x^3$, namely
+        $$ \binom{5}{1, 1, 3}\ \cdot\ 1 \cdot \left(\frac{-1}{x^3}\right) \cdot \left(2x^2\right)^3 $$
+    In other words, the coefficient is $\binom{5}{1, 1, 3} = -160$.
+\end{itemize}
+
+\section{More on Sets}
+\subsection{Definitions}
+\begin{itemize}
+    \defi {1 (Euler's $\phi$-Function)}
+    For a positive integer $n$, define $\phi(n)$ to be the number of integers
+    $x$ such that $1 \le x \le x$ and $\text{hcf}(x, n) = 1$. The function
+    $\phi$ is known as the \emph{Euler's $\phi$-function}.
+\end{itemize}
+
+\subsection{Theorems}
+\begin{itemize}
+    \theo {1 (Inclusion-Exclusion Principle)}
+    Let $n$ be a positive integer, and let $A_1, A_2, \ldots, A_n$ be finite
+    sets. Then
+        $$ |A_1 \cup A_2 \cup \ldots \cup A_n | = c_1 - c_2 + c_3 - \ldots + (-1)^nc_n $$
+    where for $1 \le i \le n$, the number $c_i$ is the sum of the \emph{sizes
+    of the intersections} of the sets taken $i$ at a time.
+    
+    For instance for $n = 3$,
+        \begin{align*}
+            c_1 &= |A_1| + |A_2| + |A_3|\\
+            c_2 &= |A_1 \cap A_2| + |A_1 \cap A_3| + |A_2 \cap A_3|\\
+            c_3 &= |A_1 \cap A_2 \cap A_3|
+        \end{align*}
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 2
+    If $A$ and $B$ are finite sets, then
+        $$ |A \cup B| = |A| + |B| - |A \cap B| $$
+        
+    \prop 3
+    Let $n \ge 2$ be an integer with prime factorization $n = p_1^{a_1}p_2^{a_2} \ldots p_k^{a_k}$
+    (where the primes $p_i$ are distinct and all $a_1 \ge 1$). Then
+        $$ \phi(n) = n \left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right) \ldots \left(1-\frac{1}{p_k}\right) $$
+    For example for $n = 420 = 2^2 \cdot 3 \cdot 5 \cdot 7 $,
+        $$ \phi(420) = 420 \cdot \left(1-\frac{1}{2}\right)\left(1-\frac{1}{3}\right)\left(1-\frac{1}{5}\right)\left(1-\frac{1}{7}\right) = 96 $$
+        
+    \prop 4
+    Let $S$ be a finite set consisting of $n$ elements. Then the total number
+    of subsets of $S$ is equal to $2^n$.
+\end{itemize}
+
+\section{Equivalence Relations}
+\subsection{Definitions}
+\begin{itemize}
+    \defi {1 (Reflexivity, Symmetry, Transitivity)}
+    Let $S$ be a set, and let $\sim$ be a \emph{relation} on $S$. Then $\sim$ is an
+    \emph{equivalence relation} if the following 3 properties hold for all
+    $a, b, c \in S$:
+    \begin{enumerate}
+        \item $a \sim a$ (reflexive)
+        \item if $a \sim b$ then $b \sim a$ (symmetric)
+        \item if $a \sim b$ and $b \sim c$ then $a \sim c$ (transitive)
+    \end{enumerate}
+    
+    \defi {2 (Equivalence Classes)}
+    Let $S$ be a set and $\sim$ an equivalence relation on $S$. For $a \in S$,
+    define
+        $$ \text{cl}(a) = \{s\ |\ s \in S, s \sim a\} $$
+    Thus $\text{cl}(a)$ is the set of things that are related to $a$. The
+    subset $\text{cl}(a)$ is called \emph{an equivalence class} of $\sim$. The
+    equivalence class\emph{es} of $\sim$ are the subsets $\text{cl}(a)$ as $a$
+    ranges over the elements of $S$.
+    
+    For instance, let $m$ be a positive integer, and let $\sim$ be the
+    equivalence relation on $\mathbb{Z}$ defined as:
+        $$ a \sim b \quad \iff \quad a \equiv b \mod m $$
+    The equivalence classes of this relation is:
+        \begin{align*}
+            \text{cl}(0)     &= \{s \in \mathbb{Z}\ |\ s \equiv     0 \mod m\}\\
+            \text{cl}(0)     &= \{s \in \mathbb{Z}\ |\ s \equiv     1 \mod m\}\\
+            &\shortvdotswithin{=}
+            \text{cl}(m - 1) &= \{s \in \mathbb{Z}\ |\ s \equiv m - 1 \mod m\}
+        \end{align*}
+    These are \emph{all} the equivalence classes.
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $S$ be a set and let $\sim$ be an equivalence relation on $S$. Then the
+    equivalence classes of $\sim$ form a partition of $S$.
+    
+    There is a very tight correspondence between the equivalence relations on a
+    set $S$ and the partitions of $S$: every equivalence relation gives a unique
+    partition of $S$, and every partition gives a unique equivalence relation.
+\end{itemize}
+
+\section{Functions}
+\subsection{Definitions}
+\begin{itemize}
+    \defi 1
+    Let $S$ and $T$ be sets. A \emph{function} from $S$ to $T$ is a rule that
+    assigns to each $s \in S$ a single element of $T$, denoted by $\text{f}(s)$.
+    We write
+        $$ \text{f}: S \to T $$
+    to mean that $\text{f}$ is a function from $S$ to $T$. If $\text{f}(s) = t$,
+    we often say $\text{f}$ sends $s \to t$.
+    
+    If $\text{f}: S \to T$ is a function, the \emph{image} of $\text{f}$ is the
+    set of all elements of $T$ that are equal to $\text{f}(s)$ for some
+    $s \in S$. We write $\text{f}(S)$ for the image of $\text{f}$. Thus
+        $$ \text{f}(S) = \{\text{f}(s)\ |\ s \in S\} $$
+        
+    \defi 2
+    Let $\text{f}: S \to T$ be a function.
+    \begin{enumerate}
+        \item We say $\text{f}$ is \emph{onto} (or \emph{surjective}) if the
+            image $\text{f}(S) = T$; \textit{i.e.} if for every $t \in T$ there
+            exists $s \in S$ such that $\text{f}(s) = t$. [range is completely
+            mapped]
+        \item We say $\text{f}$ is \emph{one-to-one} (or \emph{injective}) if
+            for for all distinct $s_1, s_2 \in S$, $\text{f}(s_1) \ne f(s_2)$;
+            \textit{i.e.} \text{f} sends different elements of $S$ to different
+            elements of $T$. Yet another way of putting this is to say:
+                $$ \forall s_1, s_2 \in S, \quad \text{f}(s_1) = \text{f}(s_2) \implies s_1 = s_2 $$
+        \item We say $\text{f}$ is a \emph{bijective} function if $\text{f}$ is both
+            onto and 1-1.
+    \end{enumerate}
+    
+    \defi {3 (The Pigeonhole Principle)}
+    Part (2.) of Proposition 19.1 implies that if $|S| > |T|$, then there is no 1-1
+    function from $S$ to $T$. This can be phrased in the following way:
+    
+    \textit{If we put $n + 1$ or more pigeons into $n$ pigeonholes, then there must be a
+        pigeonhole containing more than one pigeon.}
+        
+    Always \emph{try defining what "pigeons" and "pigeonholes" are}, while trying to
+    apply the technique for a given question.
+    
+    \defi {3 (Inverse Functions)}
+    Let $\text{f}: S \to T$ be a \emph{bijection}. We denote the inverse function by 
+    $\text{f}^{-1}: T \to S$ such that
+        $$ \forall s \in S, t \in T, \quad \text{f}^{-1}(t) = s \iff \text{f}(s) = t $$
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    Let $\text{f}: S \to T$ be a function, where $S$ and $T$ are finite sets.
+    \begin{enumerate}
+        \item If $\text{f}$ is \emph{onto}, then $|S| \ge |T|$.
+        \item If $\text{f}$ is \emph{one-to-one}, then $|S| \le |T|$.
+        \item If $\text{f}$ is \emph{bijective}, then $|S| = |T|$.
+    \end{enumerate}
+    
+    \prop 2
+    Let $S$, $T$, $U$ be sets, and let $\text{f}: S \to T$ and $\text{g}: T \to U$ be
+    functions. Then
+    \begin{enumerate}
+        \item if $\text{f}$ and $\text{g}$ are both 1-1, so is $g \circ f$,
+        \item if $\text{f}$ and $\text{g}$ are both onto, so is $g \circ f$,
+        \item if $\text{f}$ and $\text{g}$ are both bijective, so is $g \circ f$.
+    \end{enumerate}
+    
+    \prop 3
+    Let $S$, $T$ be finite sets, then the \emph{number of functions} $S \to T$ is equal to
+        $$ |T|^{|S|} $$
+    
+    \prop X
+    Let $S$, $T$ be finite sets, then the \emph{number of injective functions}
+    $S \to T$ is equal to 
+        $$ \frac{|T|!}{(|T| - |S|)!} $$
+\end{itemize}
+
+\section{Permutations}
+Even and Odd Permutations (\textit{i.e.} signs) are skipped.
+
+\subsection{Notations}
+\begin{itemize}
+    \nota {1 (The Cycle Notation)}
+    Consider the following permutation in $S_8$:
+        $$ \text{f} = \left(
+            \begin{tabular}{cccccccc}
+                1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+                4 & 5 & 6 & 3 & 2 & 7 & 1 & 8
+            \end{tabular}
+            \right)
+        $$
+    This sends $1 \to 4$, $4 \to 3$, $3 \to 6$, $6 \to 7$, and $7$ back to $1$; we say that
+    symbols $1$, $4$, $3$, $6$, $7$ form a \emph{cycle} of $\text{f}$ (of length 5).
+    Similarly, $2$ and $5$ form a cycle of length 2 and $8$ forms a cycle of length 1. We
+    write
+        $$ \text{f} = (14367)(25)(8) $$
+    This notation indicates that each number $1$, $4$, $3$, $6$, $7$ in the first cycle
+    goes to the next one, except for the last, which goes back to the first; and likewise
+    for the second and third cycles.
+    
+    Notice that the cycles have no symbols in common; they are called \emph{disjoint}
+    cycles.
+\end{itemize}
+
+\subsection{Definitions}
+\begin{itemize}
+    \defi {X (Permutations)}
+    Let $S$ be a set. By \emph{permutation} of $S$, we mean a bijection $S \to S$ - that is, a function $S \to S$ that is both onto and 1-1.
+
+    For instance, let $S = \{1, 2, 3, 4, 5\}$ and let $\text{f}: S \to S$ and $\text{g}: \mathbb{R} \to \mathbb{R}$ be defined as
+    follows:
+    \begin{align*}
+       \text{f}&\mathrel{\makebox[\widthof{=}]{:}} 1 \to 2,\ 2 \to 4,\ 3 \to 3,\ 4 \to 5,\ 5 \to 1\\
+       \text{g}(x) &= 8 - 2x
+    \end{align*}
+    Then $\text{f}$ is a permutation of $S$, and $\text{g}$ is a permutation of
+    $\mathbb{R}$.
+    
+    \defi {X (Composition of Permutations)}
+    If $\text{f}$ and $\text{g}$ are both permutations of a set $S$, the composition $\text{f} \circ \text{g}$ is also a permutation of $S$.
+    
+    \defi {X (Cycle-Shape)}
+    If $\text{g} \in S_n$ is a permutation given in cycle notation, the cycle-shape of
+    $\text{g}$ is the sequence of numbers we get by writing down the lengths of the
+    disjoint cycles of $\text{g}$ in decreasing order.
+    
+    For example, the cycle-shape of the permutation $(163)(24)(58)(7)(9)$ is $S_9$ is
+    $(3, 2, 2, 1, 1)$; which could be written more succinctly as $(3, 2^2, 1^2)$.
+    
+    \defi {X (Order of a Permutation)}
+    We define order of a permutation $\text{g} \in S_n$ to be the smallest positive integer
+    $r$ such that $\text{g}^r = \text{i}$. In other words, the orer of $\text{g}$ is the
+    smallest number of times we have to do $\text{g}$ to send everything back to where it
+    came from.
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    The number of permutations in $S_n$ (a set with $n$ elements) is $n!$
+    
+    \prop 2
+    The following properties are true for the set $S_n$ of all permutations of
+    $\{1, 2, \ldots, n\}$:
+    \begin{enumerate}
+        \item If $\text{f}$ and $\text{g}$ are in $S_n$, so is $\text{f} \circ \text{g}$
+        \item For any $\text{f}, \text{g}, \text{h} \in S_n$
+            $$ \text{f} \circ (\text{g} \circ \text{h})\ =\ (\text{f} \circ \text{g}) \circ \text{h} $$
+        \item The identity permutation $\text{i} \in S_n$ satisfies
+            $$ \text{f} \circ \text{i}\ =\ \text{i} \circ \text{f}\ =\ \text{f} $$
+            for any $\text{f} \in S_n$
+        \item Every permutation $\text{f} \in S_n$ has an inverse $\text{f}^{-1} \in S_n$
+            such that
+            $$ \text{f} \circ \text{f}^{-1}\ =\ \text{f}^{-1} \circ \text{f}\ =\ \text{i} $$
+    \end{enumerate}
+    
+    \prop 3
+    Every permutation of $S_n$ can be expressed as a product of disjoint cycles.
+    
+    \prop 4
+    The order of a permutation in cycle notation is equal to the least common multiple of
+    the lengths of the cycles.
+\end{itemize}
+
+\section{Infinity}
+\subsection{Definitions}
+\begin{itemize}
+    \defi 1
+    Two sets $A$ and $B$ are said to be \emph{equivalent} to each other if there is a
+    bijection from $A$ to $B$. We write $A \sim B$ if $A$ and $B$ are equivalent to each
+    other.
+    
+    \defi {2 (Countable Sets)}
+    A set $A$ is said to be countable if $A$ is equivalent to $\mathbb{N}$. In other words,
+    $A$ is countable if it is an infinite set, all of whose elements can be listed as
+    $A = \{a_1, a_2, a_3, \ldots, a_n, \ldots\}$.
+    
+    \defi {3 (Cardinality)}
+    Let $A$ and $B$ be sets. If $A$ and $B$ are equivalent to each other (\textit{i.e.}
+    there is a bijection $A \to B$), we say that $A$ and $B$ have the same cardinality,
+    and we write $|A| = |B|$.
+    
+    If there is a 1-1 function $A \to B$, we write $|A| \le |B|$.
+    
+    And if there is a 1-1 function $A \to B$, but no bijection $A \to B$, we write
+    $|A| < |B|$, and say that $A$ has smaller cardinality than $B$. (Thus, $|A| < |B|$ is
+    the same as saying that $|A| \le |B|$ and $|A| \ne |B|$.)
+    
+    \defi {4 (A Hierarchy of Infinities)}
+    If $S$ is a set, let $\text{P}(S)$ be the set consisting of all the subsets of $S$.
+\end{itemize}
+
+\subsection{Theorems}
+\begin{itemize}
+    \theo 1
+    The set $\mathbb{R}$ of all real numbers is uncountable.
+\end{itemize}
+
+\subsection{Propositions}
+\begin{itemize}
+    \prop 1
+    The relation $\sim$ defined in Definition (1) is an equivalence relation (\textit{i.e.}
+    satisfies the criterion of reflexivity, symmetry, and transitivity).
+    
+    \prop 2
+    Every infinite subset of $\mathbb{N}$ is countable.
+    
+    \prop 3
+    The set of rationals $\mathbb{Q}$ is countable.
+    
+    \prop 4
+    Let $S$ be an infinite set. If there is a 1-1 function $\text{f}: S \to \mathbb{N}$,
+    then $S$ is countable.
+    
+    Because consequently, there is a bijection $\text{g}: \mathbb{N} \to \text{f}(S)$
+    
+    \prop 5
+    Let $S$ be a set. Then there is \emph{no bijection} $S \to \text{P}(S)$. Consequently,
+    $|S| < |\text{P}(S)|$.
+    
+    Using the proposition, we obtain a hierarchy of infinities, starting at $|\mathbb{N}|$:
+        $$ |\mathbb{N}| < |\text{P}(\mathbb{N})| < |\text{P}(\text{P}(\mathbb{N}))| < |\text{P}(\text{P}(\text{P}(\mathbb{N})))| < \ldots $$
+    Thus there are indeed many types of "infinity."
+\end{itemize}
+
+\section{Introduction to Analysis: Bounds}
+Skipped; pray to your favourite deity.
+
+\appendix
+\section{Appendix}
+\subsection{Methods of Proofs}
+\begin{itemize}
+    \item \textbf{Direct Proof}
+    
+    \item \textbf{Proof by Induction}\\
+    Applicable only when working with operations on countable sets (where the
+    notion of \textit{next item} makes any sense).
+    \begin{enumerate}
+        \item Prove the base case $\text{P}(b)$
+        \item Prove that if $\text{P}(x)$ is true, then $\text{P}(x+1)$
+    \end{enumerate}
+    Hence $\text{P}(x)$ is true $\forall x \in [b, \infty)$.
+    
+    \item \textbf{Proof by Contrapositive}\\
+    To prove $\text{P} \implies \text{Q}$:
+    \begin{enumerate}
+        \item Assume $\neg\text{Q}$
+        \item Prove $\neg\text{P}$
+    \end{enumerate}
+    
+    \item \textbf{Proof by Contradiction}\\
+    To prove $\text{P} \implies \text{Q}$:
+    \begin{enumerate}
+        \item Assume \emph{both} $\text{P}$ and $\neg\text{Q}$
+        \item Deduce some (other) contradiction such as $\text{R} \land \neg\text{R}$
+    \end{enumerate}
+    
+\end{itemize}
+
+\end{document}
